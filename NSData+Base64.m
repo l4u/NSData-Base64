@@ -273,7 +273,7 @@ char *NewBase64Encode(
 // Parameters:
 //    aString - the base64 string to decode
 //
-// returns the autoreleased NSData representation of the base64 string
+// returns an NSData representation of the base64 string
 //
 + (NSData *)dataFromBase64String:(NSString *)aString
 {
@@ -291,8 +291,7 @@ char *NewBase64Encode(
 // Creates an NSString object that contains the base 64 encoding of the
 // receiver's data. Lines are broken at 64 characters long.
 //
-// returns an autoreleased NSString being the base 64 representation of the
-//	receiver.
+// returns an NSString being the base 64 representation of the receiver.
 //
 - (NSString *)base64EncodedString
 {
@@ -301,11 +300,10 @@ char *NewBase64Encode(
 		NewBase64Encode([self bytes], [self length], true, &outputLength);
 	
 	NSString *result =
-		[[[NSString alloc]
+		[[NSString alloc]
 			initWithBytes:outputBuffer
 			length:outputLength
-			encoding:NSASCIIStringEncoding]
-		autorelease];
+			encoding:NSASCIIStringEncoding];
 	free(outputBuffer);
 	return result;
 }
@@ -318,11 +316,10 @@ char *NewBase64Encode(
     NewBase64Encode([self bytes], [self length], separateLines, &outputLength);
 	
 	NSString *result =
-    [[[NSString alloc]
+    [[NSString alloc]
       initWithBytes:outputBuffer
       length:outputLength
-      encoding:NSASCIIStringEncoding]
-     autorelease];
+      encoding:NSASCIIStringEncoding];
 	free(outputBuffer);
 	return result;
 }
